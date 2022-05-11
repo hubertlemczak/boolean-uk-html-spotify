@@ -64,7 +64,7 @@ h6 {
 body {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 70px 280px calc(100vh - 440px) 90px;
+  grid-template-rows: 70px 265px calc(100vh - 425px) 90px;
   grid-template-columns: 300px 1fr 300px;
   grid-template-areas:
     'menu header friend-activity'
@@ -96,31 +96,57 @@ main {
   display: flex;
   align-items: center;
   gap: 17px;
+  width: fit-content;
   padding-block: 8px;
+  text-decoration: none;
 }
 
 .menu__item:nth-child(4) {
-  padding-bottom: 40px;
+  padding-bottom: 2rem;
+}
+
+.menu__item:hover .menu__text,
+.menu__item:hover .menu__icon {
+  color: white;
+  fill: #ffffff;
+}
+
+.menu__item:hover .icon--border,
+.menu__item:hover .icon--border-liked {
+  opacity: 1;
+  background-color: white;
+}
+
+.menu__inner {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(40, 40, 40);
 }
 
 .icon--border {
   display: grid;
   place-items: center;
-  border-radius: 3px;
+  border-radius: 2px;
   width: 24px;
   height: 24px;
   background-color: rgb(178, 178, 178);
+  transition: background-color 300ms ease;
 }
 
 .icon--border-liked {
   background: linear-gradient(to bottom right, blue, white);
   opacity: 0.7;
+  transition: opacity 300ms ease;
 }
 
 .menu__text {
   color: var(--text);
   font-size: 0.75rem;
+  transition: color 300ms ease;
   font-weight: 800;
+}
+
+.active {
+  color: white;
 }
 
 .playlists {
@@ -131,12 +157,91 @@ main {
   background-color: black;
 }
 
+.playlists__item {
+  padding-bottom: 0.4rem;
+}
+
+.playlists__name:hover {
+  color: white;
+}
+
+.playlists__name {
+  text-decoration: none;
+  color: var(--text);
+  cursor: default;
+  font-size: 0.9rem;
+}
+
 .friend-activity {
   grid-area: friend-activity;
 
   overflow: scroll;
   overflow-x: hidden;
   background-color: black;
+}
+
+.friend-activity__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  color: var(--text);
+  font-size: 0.83rem;
+}
+
+.friend-activity__add-user {
+  border-radius: 50%;
+  fill: var(--text);
+  transition: background-color 300ms ease;
+}
+
+.friend-activity__add-user:hover {
+  fill: white;
+  border-radius: 50%;
+  background-color: rgb(40, 40, 40);
+}
+
+.friend-activity__item {
+  display: flex;
+  gap: 10px;
+}
+
+.friend-activity__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.friend-activity__text,
+.friend-activity__text a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.friend-activity--text-overflow {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+
+.friend-activity__text a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.friend-activity__text {
+  flex: 1;
+}
+
+.friend-activity__user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.friend-activity__song {
+  font-size: 0.65rem;
 }
 
 footer {
