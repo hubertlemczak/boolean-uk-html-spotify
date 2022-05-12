@@ -77,7 +77,7 @@ body {
     'footer footer footer';
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   body {
     grid-template-columns:
       200px
@@ -86,12 +86,28 @@ body {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   body {
     grid-template-columns:
       200px
       minmax(280px, 1fr)
       70px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas:
+      'header'
+      'main';
+  }
+  .playlists {
+    display: none;
+  }
+  .friend-activity {
+    display: none;
   }
 }
 
@@ -110,13 +126,13 @@ header {
 
 .header__back {
   border-radius: 50%;
-  background-color: rgb(24, 24, 24);
+  background-color: rgba(43, 43, 43, 0.7);
 }
 
 .header__forward {
   cursor: not-allowed;
   border-radius: 50%;
-  background-color: rgb(43, 43, 43);
+  background-color: rgba(24, 24, 24, 0.7);
 }
 
 .header__profile {
@@ -206,34 +222,22 @@ main {
   grid-area: main;
 
   position: relative;
-
-  background-color: rgb(18, 18, 18);
-}
-
-main::before {
-  content: '';
-  left: 0;
-  right: 0px;
-  top: 0;
-  position: absolute;
-  height: 300px;
   background: linear-gradient(
     to bottom,
     var(--header-color),
-    rgb(18, 18, 18) 70%
+    rgb(18, 18, 18) 20%
   );
 }
 
 .main__container {
   height: 100%;
   position: absolute;
+  left: 0;
+  right: 0;
+  padding-bottom: 4rem;
   z-index: 3;
   overflow: scroll;
   overflow-x: hidden;
-}
-
-.main__top {
-  padding-right: 1.5635rem;
 }
 
 .main__top h2 {
@@ -250,8 +254,8 @@ main::before {
 
 .main__top-item {
   display: flex;
-  min-width: 280px;
-  flex: 1 0 30%;
+  width: 100%;
+  flex: 1 1 30%;
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: rgba(90, 90, 90, 0.3);
@@ -265,30 +269,65 @@ main::before {
   display: grid;
   place-items: center;
   background: linear-gradient(to bottom right, blue, white);
-  min-width: 80px;
-  min-height: 80px;
-}
-
-@media screen and (max-width: 1200px) {
-  .main__top-cover {
-    min-width: 60px;
-    min-height: 60px;
-  }
+  width: 80px;
+  height: 80px;
 }
 
 .main__top-text {
   display: grid;
   place-items: center;
-  padding-left: 2rem;
+  padding-inline: 2rem 0.5rem;
   font-weight: 700;
   color: white;
+  overflow: hidden;
 }
 
-.main__inner {
-  padding-block: 2.5rem;
+@media screen and (max-width: 1350px) {
+  .main__top-cover {
+    width: 60px;
+    height: 60px;
+  }
+  .main__top-cover svg {
+    height: 30px;
+    width: 30px;
+  }
+  .main__top-item {
+    flex: 1 1 33%;
+  }
+  .main__top-text {
+    font-size: 0.9rem;
+  }
 }
 
+@media screen and (max-width: 750px) {
+  .main__top-cover {
+    width: 50px;
+    height: 50px;
+  }
+  .main__top-item {
+    flex: 1 1 33%;
+  }
+  .main__top-text {
+    padding-inline: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .main__container {
+    padding-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main__top-cover {
+    width: 40px;
+    height: 40px;
+  }
+  .main__top-cover svg {
+    height: 20px;
+    width: 20px;
+  }
+}
 .main__heading {
+  padding-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -303,15 +342,28 @@ main::before {
   color: var(--text);
 }
 
+@media screen and (max-width: 450px) {
+  .main__heading {
+    font-size: 1rem;
+  }
+  .see-all {
+    font-size: 0.7rem;
+  }
+  .main__top h2 {
+    font-size: 1.5rem;
+  }
+}
+
 .main__content {
   display: flex;
   gap: 1.3rem;
+  flex: 1;
 }
 
 .main__item {
   padding: 1rem;
-
-  max-width: 203px;
+  min-width: 135px;
+  max-width: 200px;
   border-radius: 10px;
   background-color: rgb(24, 24, 24);
   transition: background-color 300ms ease;
@@ -331,6 +383,14 @@ main::before {
 @media screen and (max-width: 1200px) {
   .main__item:nth-last-child(-n + 3) {
     display: none;
+  }
+}
+@media screen and (max-width: 830px) {
+  .main__content {
+    overflow-x: scroll;
+  }
+  .main__item:nth-last-child(-n + 3) {
+    display: block;
   }
 }
 
@@ -414,6 +474,34 @@ main::before {
 
 .active {
   color: white;
+}
+
+@media screen and (max-width: 750px) {
+  .menu__logo,
+  .menu__create-playlist,
+  .menu__liked-songs,
+  .menu__text {
+    display: none;
+  }
+  .menu {
+    padding: 0;
+  }
+  .menu__inner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    padding-block: 0.5rem;
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.9) 70%);
+  }
+  .menu__item:nth-child(4) {
+    padding: 0;
+  }
 }
 
 .playlists {
@@ -524,7 +612,7 @@ main::before {
   width: 150px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .friend-activity--text-overflow {
     white-space: normal;
     width: 100px;
@@ -538,7 +626,7 @@ main::before {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .friend-activity__text {
     display: none;
   }
@@ -567,6 +655,16 @@ main::before {
 
 footer {
   grid-area: footer;
-
+  z-index: 10;
   background-color: rgb(24, 24, 24);
+}
+@media screen and (max-width: 750px) {
+  footer {
+    position: fixed;
+    bottom: 56px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  }
 }
