@@ -55,6 +55,7 @@ h6 {
 
 :root {
   --text: rgb(178, 178, 178);
+  --header-color: rgb(33, 17, 96);
 }
 
 .--p-inline {
@@ -99,7 +100,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(80, 80, 80);
+  background-color: var(--header-color);
 }
 
 .header__buttons {
@@ -143,7 +144,6 @@ header {
 }
 
 .header__profile:focus-within .header__menu {
-  /* display: block; */
   transform: scaleY(1);
 }
 
@@ -160,13 +160,13 @@ header {
   cursor: auto;
   top: 42px;
   right: 0;
-  /* display: none; */
   width: 200px;
   border-radius: 5px;
   background-color: rgb(40, 40, 40);
   transition: transform 200ms ease-out;
   transform: scaleY(0);
   transform-origin: top;
+  z-index: 4;
   box-shadow: 0 5px 10px black;
 }
 
@@ -204,9 +204,153 @@ header {
 
 main {
   grid-area: main;
-  /* position: relative; */
-  /* overflow-x: hidden; */
+
+  position: relative;
+
   background-color: rgb(18, 18, 18);
+}
+
+main::before {
+  content: '';
+  left: 0;
+  right: 0px;
+  top: 0;
+  position: absolute;
+  height: 300px;
+  background: linear-gradient(
+    to bottom,
+    var(--header-color),
+    rgb(18, 18, 18) 70%
+  );
+}
+
+.main__container {
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.main__top {
+  padding-right: 1.5635rem;
+}
+
+.main__top h2 {
+  color: white;
+  font-size: 2rem;
+  padding-block: 1.3rem;
+}
+
+.main__top-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+}
+
+.main__top-item {
+  display: flex;
+  min-width: 280px;
+  flex: 1 0 30%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: rgba(90, 90, 90, 0.3);
+}
+
+.main__top-item:hover {
+  background-color: rgba(90, 90, 90, 0.8);
+}
+
+.main__top-cover {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to bottom right, blue, white);
+  min-width: 80px;
+  min-height: 80px;
+}
+
+@media screen and (max-width: 1200px) {
+  .main__top-cover {
+    min-width: 60px;
+    min-height: 60px;
+  }
+}
+
+.main__top-text {
+  display: grid;
+  place-items: center;
+  padding-left: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.main__inner {
+  padding-block: 2.5rem;
+}
+
+.main__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.see-all {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.main__content {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.main__item {
+  padding: 1rem;
+
+  max-width: 203px;
+  border-radius: 10px;
+  background-color: rgb(24, 24, 24);
+  transition: background-color 300ms ease;
+}
+
+@media screen and (max-width: 1500px) {
+  .main__item:nth-last-child(-n + 1) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .main__item:nth-last-child(-n + 2) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main__item:nth-last-child(-n + 3) {
+    display: none;
+  }
+}
+
+.main__item:hover {
+  background-color: rgb(43, 43, 43);
+}
+
+.main__album img {
+  border-radius: 10px;
+}
+
+.main__album-name {
+  padding-block: 1rem 0;
+  color: white;
+  font-weight: 700;
+}
+
+.main__album-artists {
+  font-size: 0.9rem;
+  color: var(--text);
 }
 
 .menu {
