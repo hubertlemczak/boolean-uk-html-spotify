@@ -764,13 +764,11 @@ footer {
 
 .footer__play {
   z-index: 1;
-  transition: transform 100ms ease;
 }
 
 .footer__pause {
   position: absolute;
   top: 0;
-  transition: transform 100ms ease;
   z-index: 0;
 }
 
@@ -785,16 +783,16 @@ footer {
   border: none;
 }
 
-.footer__play:hover {
-  background-color: rgb(198, 198, 198);
+.footer-button:hover {
+  transform: scale(1.1);
 }
 
 .footer__play:active {
-  transform: scale(1.13);
+  transform: scale(1);
 }
 
 .footer__pause:active {
-  transform: scale(1.13);
+  transform: scale(1);
 }
 
 .footer__middle-bottom {
